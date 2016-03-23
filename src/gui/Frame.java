@@ -9,10 +9,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Frame extends JFrame {
 
 	private JPanel mainMenuPane;
+	private JPanel addMenuPane = new AddMenuPane(this);
 
 	/**
 	 * Launch the application.
@@ -42,6 +45,12 @@ public class Frame extends JFrame {
 		mainMenuPane.setLayout(null);
 		
 		JButton addBtn = new JButton("Add");
+		addBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addMenuPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+				setContentPane(addMenuPane);
+			}
+		});
 		addBtn.setBounds(100, 62, 120, 23);
 		mainMenuPane.add(addBtn);
 		

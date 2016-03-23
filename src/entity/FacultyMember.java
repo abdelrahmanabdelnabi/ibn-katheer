@@ -6,6 +6,7 @@ public class FacultyMember {
 	private String lastName;
 	private String phoneNumber;
 	private String email;
+	private char gender;
 	// add a department reference?
 	
 	// default Constructor
@@ -52,6 +53,12 @@ public class FacultyMember {
 	public String getEmail()
 	{
 		return email;
+	}
+	public char getGender(){
+		return gender;
+	}
+	public void setGender(char Gender){
+		gender = Gender;
 	}
 
 }
