@@ -1,5 +1,5 @@
 package entity;
 
-public class ID {
+class ID {
 	static int id=0;
 }

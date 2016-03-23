@@ -8,7 +8,6 @@ public class Course {
 	private int creditHours;
 	private List<Integer> ids ; //student
 	private List <Integer>idp;	//professors
-
 	// List<Student> studentList;
 	// add a department reference?
 
