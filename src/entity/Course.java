@@ -62,11 +62,20 @@ public class Course {
 	public void addProf(int id){
 		Integer i = new Integer(id);
 		//thanks to question 5561100 on stackoverflow
+		//and yes I just copied pasted from the above one :P :P
 		idp.add(i);
 		Collections.sort(idp);
 	}
 	public void delProf(int id){
 		Integer i = new Integer (id);
 		idp.remove(i);
+	}
+	public boolean isStudentthere(int id){
+		Integer i = new Integer(id);
+		return ids.contains(i);
+	}
+	public boolean isProfthere(int id){
+		Integer i = new Integer(id);
+		return idp.contains(i);
 	}
 }
