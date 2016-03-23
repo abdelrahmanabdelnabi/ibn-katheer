@@ -1,11 +1,11 @@
 package entity;
-
+import entity.ID;
 public class FacultyMember {
-	
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private String email;
+	private int id=-1;
 	// add a department reference?
 	
 	// default Constructor
@@ -14,6 +14,9 @@ public class FacultyMember {
 		lastName = "";
 		phoneNumber = "";
 		email = "";
+		if(id==-1)
+			id = ++ID.id;
+
 	}
 	
 	//full argument constructor
@@ -22,6 +25,8 @@ public class FacultyMember {
 		lastName = lname;
 		phoneNumber = number;
 		email= Email;
+		if(id==-1)
+			id = ++ID.id;
 	}
 	
 	//setters and getters
@@ -33,6 +38,9 @@ public class FacultyMember {
 	}
 	public String getlastName(){
 		return lastName;
+	}
+	public int getID(){
+		return id;
 	}
 	public void setLastName(String name){
 		lastName = name;

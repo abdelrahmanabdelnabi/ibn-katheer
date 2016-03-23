@@ -1,10 +1,13 @@
 package entity;
+import java.util.*;
 
 public class Course {
 
 	private String name;
 	private String code;
 	private int creditHours;
+	private List<Integer> ids ; //student
+	private List <Integer>idp;	//professors
 
 	// List<Student> studentList;
 	// add a department reference?
@@ -14,13 +17,17 @@ public class Course {
 		name = "";
 		code = "";
 		creditHours = 0;
+		ids=  new ArrayList<Integer>();
+		idp=  new ArrayList<Integer>();
 	}
-
+	
 	// full argument constructor
 	public Course(String name, String code, int hours) {
 		this.name = name;
 		this.code = code;
 		this.creditHours = hours;
+		ids = new ArrayList<Integer>();
+		idp = new ArrayList<Integer>();
 	}
 
 	// setters and getters
@@ -42,5 +49,24 @@ public class Course {
 	public void setCreditHours(int hours) {
 		creditHours = hours;
 	}
-
+	public void addStudent(int id){
+		Integer i = new Integer(id);
+		//thanks to question 5561100 on stackoverflow
+		ids.add(i);
+		Collections.sort(ids);
+	}
+	public void delStudent(int id){
+		Integer i = new Integer (id);
+		ids.remove(i);
+	}
+	public void addProf(int id){
+		Integer i = new Integer(id);
+		//thanks to question 5561100 on stackoverflow
+		idp.add(i);
+		Collections.sort(idp);
+	}
+	public void delProf(int id){
+		Integer i = new Integer (id);
+		idp.remove(i);
+	}
 }
