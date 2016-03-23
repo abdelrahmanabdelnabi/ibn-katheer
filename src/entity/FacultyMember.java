@@ -6,7 +6,6 @@ public class FacultyMember {
 	private String lastName;
 	private String phoneNumber;
 	private String email;
-	private char gender;
 	// add a department reference?
 	
 	// default Constructor
