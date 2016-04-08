@@ -20,11 +20,11 @@ import java.awt.event.ActionEvent;
 
 public class Frame extends JFrame {
 
-	private JPanel mainMenuPane;
 	private AddMenuPanel addMenuPane;
 	private JPanel newStudentPanel;
 	private NewDepartmentPanel dptPanel;
 	private MainMenu mainMenuPanel;
+	private NewProfPanel newProfPanel;
 
 	/**
 	 * Launch the application.
@@ -54,6 +54,7 @@ public class Frame extends JFrame {
 		addMenuPane = new AddMenuPanel();
 		newStudentPanel = new NewStudentPanel();
 		dptPanel = new NewDepartmentPanel();
+		newProfPanel = new NewProfPanel();
 
 		// add the main menu panel to the window
 		add(mainMenuPanel);
@@ -62,6 +63,7 @@ public class Frame extends JFrame {
 		initMainMenuListener();
 		initAddMenuListener();
 		initNewDptListener();
+		initNewProfListener();
 
 	}
 
@@ -96,10 +98,24 @@ public class Frame extends JFrame {
 				revalidate();
 				// TODO check the action that was selected using e.getAction()
 				// and then set the new panel accordingly
+				String action = e.getAction();
+				if(action.equals("student")){
+					setContentPane(newStudentPanel);
+					newStudentPanel.setVisible(true);
+					revalidate();
+				}
+				else if(action.equals("department")){
+					setContentPane(dptPanel);
+					dptPanel.setVisible(true);
+					revalidate();
+				}
+				else if(action.equals("professor")){
+					setContentPane(newProfPanel);
+					newProfPanel.setVisible(true);
+					revalidate();
+				}
 
-				setContentPane(newStudentPanel);
-				newStudentPanel.setVisible(true);
-				revalidate();
+				
 			}
 		});
 	}
@@ -115,6 +131,16 @@ public class Frame extends JFrame {
 					// do as appropriate
 				}
 				
+			}
+		});
+	}
+	
+	private void initNewProfListener(){
+		newProfPanel.setNewProfListener(new NewProfListener() {
+			
+			@Override
+			public void EventOccurred(NewProfEvent e) {
+				// TODO create a new professor object with the given data in the event
 			}
 		});
 	}
