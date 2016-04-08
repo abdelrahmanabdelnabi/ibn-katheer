@@ -21,8 +21,10 @@ import java.awt.event.ActionEvent;
 public class Frame extends JFrame {
 
 	private JPanel mainMenuPane;
-	private AddMenuPanel addMenuPane = new AddMenuPanel();
-	private JPanel newStudentPanel = new NewStudentPanel();
+	private AddMenuPanel addMenuPane;
+	private JPanel newStudentPanel;
+	private NewDepartmentPanel dptPanel;
+	private MainMenu mainMenuPanel;
 
 	/**
 	 * Launch the application.
@@ -46,56 +48,75 @@ public class Frame extends JFrame {
 	public Frame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
-		mainMenuPane = new JPanel();
-		mainMenuPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(mainMenuPane);
-		mainMenuPane.setLayout(null);
 
-		JButton addBtn = new JButton("Add");
-		
-		addBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addMenuPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-				setContentPane(addMenuPane);
-				addMenuPane.setVisible(true);
-				repaint();
-				printAll(getGraphics());
+		// construct the panels
+		mainMenuPanel = new MainMenu();
+		addMenuPane = new AddMenuPanel();
+		newStudentPanel = new NewStudentPanel();
+		dptPanel = new NewDepartmentPanel();
+
+		// add the main menu panel to the window
+		add(mainMenuPanel);
+
+		// initialize the panels' listeners
+		initMainMenuListener();
+		initAddMenuListener();
+		initNewDptListener();
+
+	}
+
+	/*
+	 * sets the main menu panel listener
+	 */
+	private void initMainMenuListener() {
+		mainMenuPanel.setMainMenuListener(new MainMenuListener() {
+			@Override
+			public void MenuEventOccurred(MainMenuEvent e) {
+				// TODO check which action was triggered and switch panels
+				// accordingly
+				String action = e.getAction();
+
+				if (action.equals("add")) {
+					revalidate();
+					setContentPane(addMenuPane);
+					addMenuPane.setVisible(true);
+					revalidate();
+				}
+
 			}
 		});
+	}
+
+	private void initAddMenuListener() {
 		addMenuPane.setMenuPanelListener(new MenuPanelListener() {
 			@Override
 			public void menuEventOccurred(MenuPanelEvent e) {
-				// TODO replace current panel with new student panel
-				//removeAll();
+				// replace current panel with the new panel
+				// removeAll();
 				revalidate();
+				// TODO check the action that was selected using e.getAction()
+				// and then set the new panel accordingly
+
 				setContentPane(newStudentPanel);
 				newStudentPanel.setVisible(true);
 				revalidate();
 			}
 		});
-		addBtn.setBounds(100, 62, 120, 23);
-		mainMenuPane.add(addBtn);
-
-		JButton editBtn = new JButton("Edit");
-		editBtn.setBounds(100, 96, 120, 23);
-		mainMenuPane.add(editBtn);
-
-		JButton deleteBtn = new JButton("Delete");
-		deleteBtn.setBounds(100, 130, 120, 23);
-		mainMenuPane.add(deleteBtn);
-
-		JButton searchBtn = new JButton("Search");
-		searchBtn.setBounds(100, 164, 120, 23);
-		mainMenuPane.add(searchBtn);
-
-		JLabel lblAlexandriaUniversitySystem = new JLabel(
-				"Alexandria University System");
-		lblAlexandriaUniversitySystem
-				.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblAlexandriaUniversitySystem.setBounds(79, 11, 250, 18);
-		mainMenuPane.add(lblAlexandriaUniversitySystem);
 	}
 	
-	
+	private void initNewDptListener(){
+		dptPanel.setEventListener(new NewDepartmentListener() {
+			
+			@Override
+			public void departmentEventOccurred(NewDepartmentEvent e) {
+				// check the action triggered
+				String action = e.getAction();
+				if( action.equals("new") ){
+					// do as appropriate
+				}
+				
+			}
+		});
+	}
 
 }
