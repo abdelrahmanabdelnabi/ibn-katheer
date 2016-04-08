@@ -3,13 +3,26 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import java.awt.FlowLayout;
 import java.awt.Font;
+
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+import javax.swing.LayoutFocusTraversalPolicy;
 
-public class NewStudentPane extends JPanel {
+import java.awt.Color;
+
+import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class NewStudentPanel extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -19,7 +32,8 @@ public class NewStudentPane extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NewStudentPane() {
+	public NewStudentPanel() {
+		setBackground(Color.YELLOW);
 		setLayout(null);
 		
 		JLabel titleLabel = new JLabel("New Student Info");
@@ -95,13 +109,10 @@ public class NewStudentPane extends JPanel {
 		lblCourses.setBounds(30, 247, 85, 22);
 		add(lblCourses);
 		
-		JList list = new JList();
-		list.setBounds(150, 218, 94, 18);
-		add(list);
-		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(338, 111, 60, 20);
+		comboBox.addItem("compu");
+		comboBox.addItem("electro");
 		add(comboBox);
-
 	}
 }
